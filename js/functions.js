@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 //1
 function checkLengthString(word, number) {
   return word.length > number;
@@ -11,7 +12,7 @@ function getPalindrome(string) {
   const reverse = reverseString(string);
   return string === reverse;
 }
-getPalindrome("кот");
+getPalindrome("коm");
 
 function reverseString(str) {
   return str.split("").reverse().join("");
