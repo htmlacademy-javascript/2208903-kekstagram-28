@@ -3,7 +3,7 @@ function checkLengthString(word, number) {
   return word.length > number;
 }
 
-console.log(checkLengthString('airport', 5));
+checkLengthString('airport', 5);
 checkLengthString('cat', 4);
 
 //2
