@@ -1,3 +1,5 @@
+import { openModal } from './big-picture.js';
+
 const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document
   .querySelector('#picture')
@@ -12,6 +14,10 @@ const makePictures = (photos) => {
       element.comments.length;
     pictureElement.querySelector('.picture__likes').textContent = element.likes;
     picturesFragment.append(pictureElement);
+    pictureElement.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      openModal(element);
+    });
   });
   pictureContainer.append(picturesFragment);
 };
