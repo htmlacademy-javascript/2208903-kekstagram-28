@@ -16,8 +16,9 @@
         <h2 class="img-filters__title visually-hidden">Фильтр фотографий</h2>
         <form
           class="img-filters__form"
-          action="index.html"
-          method="get"
+          action="https://28.javascript.pages.academy/kekstagram"
+          method="post"
+          enctype="multipart/form-data"
           autocomplete="off"
         >
           <button
@@ -54,6 +55,7 @@
             </h2>
             <form
               class="img-upload__form"
+              action="https://28.javascript.pages.academy/kekstagram"
               id="upload-select-image"
               method="post"
               enctype="multipart/form-data"
@@ -452,6 +454,7 @@
         Загружаем...
       </div>
     </template>
+    <script src="./vendor/pristine/pristine.min.js"></script>
     <script src="js/main.js" type="module"></script>
   </body>
 </html>

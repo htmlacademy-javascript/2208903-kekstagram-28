@@ -25,9 +25,12 @@ function createRandomIdFromRangeGenerator(min, max) {
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
+const checkLengthString = (word, number) => word.length < number;
+
 export {
   createRandomIdFromRangeGenerator,
   getRandomInteger,
   isEscapeKey,
   isEnterKey,
+  checkLengthString,
 };
