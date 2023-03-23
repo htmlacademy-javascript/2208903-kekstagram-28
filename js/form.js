@@ -1,4 +1,6 @@
 import { validateForm } from './validator.js';
+import { scale } from './scale.js';
+import { effects } from './effects.js';
 
 const imageUpload = document.querySelector('.img-upload__input');
 const modalUpload = document.querySelector('.img-upload__overlay');
@@ -21,8 +23,14 @@ closeButton.addEventListener('click', () => {
   modalUploadHide();
 });
 
-imageUpload.addEventListener('change', () => {
+const modalOpen = () => {
   modalUploadShow();
+  scale();
+  effects();
+};
+
+imageUpload.addEventListener('change', () => {
+  modalOpen();
   const fileImage = imageUpload.files[0];
   imagePreview.src = URL.createObjectURL(fileImage);
 });
