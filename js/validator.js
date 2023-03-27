@@ -1,6 +1,7 @@
 import { checkLengthString } from './util.js';
 import { MAX_PHOTO_DESCRIPTION } from './constans.js';
 import { MAX_HASHTAG_NUMBER, HASHTAG_SYMBOLS } from './constans.js';
+import { postPhoto } from './api.js';
 
 const orderForm = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');

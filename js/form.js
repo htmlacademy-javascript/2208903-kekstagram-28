@@ -1,6 +1,9 @@
 import { validateForm } from './validator.js';
 import { scale } from './scale.js';
 import { effects } from './effects.js';
+import { postPhoto } from './api.js';
+import { successHandler, failHandler } from './popups.js';
+import { isEscapeKey } from './util.js';
 
 const imageUpload = document.querySelector('.img-upload__input');
 const modalUpload = document.querySelector('.img-upload__overlay');
@@ -17,6 +20,14 @@ const modalUploadShow = () => {
 const modalUploadHide = () => {
   modalUpload.classList.add('hidden');
   body.classList.remove('modal-open');
+  orderForm.reset();
+};
+
+const onEscapeHandler = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    modalUploadHide();
+  }
 };
 
 closeButton.addEventListener('click', () => {
@@ -27,6 +38,7 @@ const modalOpen = () => {
   modalUploadShow();
   scale();
   effects();
+  document.addEventListener('keydown', onEscapeHandler);
 };
 
 imageUpload.addEventListener('change', () => {
@@ -35,9 +47,23 @@ imageUpload.addEventListener('change', () => {
   imagePreview.src = URL.createObjectURL(fileImage);
 });
 
+const submitButton = document.querySelector('.img-upload__submit');
+
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...',
+};
+
 orderForm.addEventListener('submit', (evt) => {
-  validateForm();
-  if (!validateForm()) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (validateForm()) {
+    submitButton.textContent = SubmitButtonText.SENDING;
+    submitButton.disabled = true;
+    postPhoto(new FormData(evt.target), successHandler, failHandler).then(
+      () => {
+        submitButton.textContent = SubmitButtonText.IDLE;
+        submitButton.disabled = false;
+      }
+    );
   }
 });
