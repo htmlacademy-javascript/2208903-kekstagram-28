@@ -50,8 +50,8 @@ imageUpload.addEventListener('change', () => {
 const submitButton = document.querySelector('.img-upload__submit');
 
 const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...',
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...',
 };
 
 orderForm.addEventListener('submit', (evt) => {
@@ -59,11 +59,13 @@ orderForm.addEventListener('submit', (evt) => {
   if (validateForm()) {
     submitButton.textContent = SubmitButtonText.SENDING;
     submitButton.disabled = true;
-    postPhoto(new FormData(evt.target), successHandler, failHandler).then(
-      () => {
+    postPhoto(new FormData(evt.target), successHandler, failHandler)
+      .then(() => {
         submitButton.textContent = SubmitButtonText.IDLE;
         submitButton.disabled = false;
-      }
-    );
+      })
+      .then(() => {
+        modalUploadHide();
+      });
   }
 });

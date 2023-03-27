@@ -12,7 +12,7 @@ const getPhotos = () =>
       throw new Error();
     });
 
-const postPhoto = (body, successHandler, failHandler) => {
+const postPhoto = (body, successHandler, failHandler) =>
   fetch(POST_DATA_URL, {
     method: 'POST',
     body,
@@ -27,6 +27,5 @@ const postPhoto = (body, successHandler, failHandler) => {
     .catch(() => {
       failHandler();
     });
-};
 
 export { getPhotos, postPhoto };
