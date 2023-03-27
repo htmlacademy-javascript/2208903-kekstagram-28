@@ -91,16 +91,13 @@ const openModal = (photo) => {
   showModal();
   renderImage(photo);
   renderLikes(photo.likes);
-
   renderDescription(photo.description);
-
   commentsList.length = 0;
   commentsList.push(...photo.comments.slice());
   modalCommentsList.innerHTML = '';
   commentsTotal = photo.comments.length;
   commentsShown = 0;
   renderCommentsList();
-
   document.addEventListener('keydown', onEscapeHandler);
 };
 

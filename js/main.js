@@ -1,7 +1,8 @@
-import { createPhotosSet } from './data.js';
-import { MAX_PHOTOS_NUMBER } from './constans.js';
+import { getPhotos } from './api.js';
+// import { MAX_PHOTOS_NUMBER } from './constans.js';
 import { makePictures } from './make-picture.js';
 import './form.js';
 
-const data = createPhotosSet(MAX_PHOTOS_NUMBER);
-makePictures(data);
+getPhotos().then((photos) => {
+  makePictures(photos);
+});
