@@ -16,14 +16,21 @@ const successPopupCloseHandler = () => {
 };
 
 const errorPopupCloseHandler = () => {
+  console.log('error');
   document.querySelector('.error').remove();
   errorPopup.removeEventListener('click', errorPopupCloseHandler);
 };
 
-const onEscapeHandler = (evt) => {
+const errorEscapeHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     successPopupCloseHandler();
+  }
+};
+
+const successEscapeHandler = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
     errorPopupCloseHandler();
   }
 };
@@ -31,13 +38,13 @@ const onEscapeHandler = (evt) => {
 const successHandler = () => {
   document.body.append(successPopup);
   successPopup.addEventListener('click', successPopupCloseHandler);
-  document.addEventListener('keydown', onEscapeHandler);
+  document.addEventListener('keydown', successEscapeHandler);
 };
 
 const failHandler = () => {
   document.body.append(errorPopup);
   errorPopup.addEventListener('click', errorPopupCloseHandler);
-  document.addEventListener('keydown', onEscapeHandler);
+  document.addEventListener('keydown', errorEscapeHandler);
 };
 
 export { successHandler, failHandler };

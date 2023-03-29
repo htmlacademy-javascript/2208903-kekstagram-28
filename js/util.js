@@ -1,12 +1,12 @@
-function getRandomInteger(min, max) {
+const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-}
+};
 
-function createRandomIdFromRangeGenerator(min, max) {
+const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
   return function () {
@@ -20,12 +20,20 @@ function createRandomIdFromRangeGenerator(min, max) {
     previousValues.push(currentValue);
     return currentValue;
   };
-}
+};
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 const checkLengthString = (word, number) => word.length < number;
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
 export {
   createRandomIdFromRangeGenerator,
@@ -33,4 +41,5 @@ export {
   isEscapeKey,
   isEnterKey,
   checkLengthString,
+  debounce,
 };

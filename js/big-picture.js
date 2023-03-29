@@ -1,4 +1,4 @@
-import { isEscapeKey, isEnterKey } from './util.js';
+import { isEscapeKey } from './util.js';
 import { COMMENTS_STEP } from './constans.js';
 
 const userModalElement = document.querySelector('.big-picture');
@@ -18,23 +18,16 @@ const commentsList = [];
 let commentsTotal = 0;
 let commentsShown = 0;
 
-const onEscapeHandler = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    hideModal();
-  }
+const hideModal = () => {
+  userModalElement.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onEscapeHandler);
 };
 
 const showModal = () => {
   userModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
 };
-
-function hideModal() {
-  userModalElement.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscapeHandler);
-}
 
 modalCloseButton.addEventListener('click', () => {
   hideModal();
@@ -100,5 +93,12 @@ const openModal = (photo) => {
   renderCommentsList();
   document.addEventListener('keydown', onEscapeHandler);
 };
+
+function onEscapeHandler(evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    hideModal();
+  }
+}
 
 export { openModal };
