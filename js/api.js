@@ -12,20 +12,10 @@ const getPhotos = () =>
       throw new Error();
     });
 
-const postPhoto = (body, successHandler, failHandler) =>
+const postPhoto = (body) =>
   fetch(POST_DATA_URL, {
     method: 'POST',
     body,
-  })
-    .then((response) => {
-      if (response.ok) {
-        successHandler();
-      } else {
-        failHandler();
-      }
-    })
-    .catch(() => {
-      failHandler();
-    });
+  });
 
 export { getPhotos, postPhoto };

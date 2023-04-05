@@ -11,6 +11,7 @@ const createSlider = () => {
       max: 100,
     },
     start: 80,
+    connect: 'lower',
   });
 };
 

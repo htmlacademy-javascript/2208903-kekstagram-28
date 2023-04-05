@@ -1,7 +1,6 @@
 import { checkLengthString } from './util.js';
 import { MAX_PHOTO_DESCRIPTION } from './constans.js';
 import { MAX_HASHTAG_NUMBER, HASHTAG_SYMBOLS } from './constans.js';
-// import { postPhoto } from './api.js';
 
 const orderForm = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
@@ -24,7 +23,7 @@ const validateDescription = (value) =>
 pristine.addValidator(
   descriptionField,
   validateDescription,
-  `Длина строки не должна превышать ${MAX_PHOTO_DESCRIPTION} символов`
+  `Длина комментария не должна превышать ${MAX_PHOTO_DESCRIPTION} символов`
 );
 
 const isValidTag = (tag) => HASHTAG_SYMBOLS.test(tag);
@@ -47,7 +46,7 @@ const validateHashtags = (value) => {
 pristine.addValidator(
   hashtagField,
   validateHashtags,
-  'Неправильно заполнено поле'
+  'Неправильно заполнено поле с хэштегами'
 );
 
 const validateForm = () => pristine.validate();
