@@ -6,6 +6,7 @@ const MAX_HASHTAG_NUMBER = 5;
 const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_RANDOM_PHOTOS = 10;
 const RERENDER_DELAY = 500;
+const MESSAGE = 'Что-то пошло не так, обновите страницу';
 
 const GET_DATA_URL = 'https://28.javascript.pages.academy/kekstagram/data';
 const POST_DATA_URL = 'https://28.javascript.pages.academy/kekstagram';
@@ -20,4 +21,5 @@ export {
   RERENDER_DELAY,
   GET_DATA_URL,
   POST_DATA_URL,
+  MESSAGE,
 };

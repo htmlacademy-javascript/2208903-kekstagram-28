@@ -23,7 +23,7 @@ const validateDescription = (value) =>
 pristine.addValidator(
   descriptionField,
   validateDescription,
-  `Длина строки не должна превышать ${MAX_PHOTO_DESCRIPTION} символов`
+  `Длина комментария не должна превышать ${MAX_PHOTO_DESCRIPTION} символов`
 );
 
 const isValidTag = (tag) => HASHTAG_SYMBOLS.test(tag);
@@ -46,7 +46,7 @@ const validateHashtags = (value) => {
 pristine.addValidator(
   hashtagField,
   validateHashtags,
-  'Неправильно заполнено поле'
+  'Неправильно заполнено поле с хэштегами'
 );
 
 const validateForm = () => pristine.validate();

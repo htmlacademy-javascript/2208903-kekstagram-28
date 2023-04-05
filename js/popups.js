@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-
+import { onEscapeHandler } from './form.js';
 const successTemplate = document
   .querySelector('#success')
   .content.querySelector('.success');
@@ -16,7 +16,6 @@ const successPopupCloseHandler = () => {
 };
 
 const errorPopupCloseHandler = () => {
-  console.log('error');
   document.querySelector('.error').remove();
   errorPopup.removeEventListener('click', errorPopupCloseHandler);
 };
@@ -24,14 +23,16 @@ const errorPopupCloseHandler = () => {
 const errorEscapeHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    successPopupCloseHandler();
+    errorPopupCloseHandler();
+    document.addEventListener('keydown', onEscapeHandler);
+    document.removeEventListener('keydown', errorEscapeHandler);
   }
 };
 
 const successEscapeHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    errorPopupCloseHandler();
+    successPopupCloseHandler();
   }
 };
 

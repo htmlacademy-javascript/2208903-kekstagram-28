@@ -21,13 +21,7 @@ const modalUploadHide = () => {
   modalUpload.classList.add('hidden');
   body.classList.remove('modal-open');
   orderForm.reset();
-};
-
-const onEscapeHandler = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    modalUploadHide();
-  }
+  document.removeEventListener('keydown', onEscapeHandler);
 };
 
 closeButton.addEventListener('click', () => {
@@ -59,13 +53,38 @@ orderForm.addEventListener('submit', (evt) => {
   if (validateForm()) {
     submitButton.textContent = SubmitButtonText.SENDING;
     submitButton.disabled = true;
-    postPhoto(new FormData(evt.target), successHandler, failHandler)
-      .then(() => {
+    postPhoto(new FormData(evt.target))
+      .then((response) => {
+        if (response.ok) {
+          modalUploadHide();
+          successHandler();
+        } else {
+          failHandler();
+          document.removeEventListener('keydown', onEscapeHandler);
+        }
+      })
+      .catch(() => {
+        failHandler();
+        document.removeEventListener('keydown', onEscapeHandler);
+      })
+      .finally(() => {
         submitButton.textContent = SubmitButtonText.IDLE;
         submitButton.disabled = false;
-      })
-      .then(() => {
-        modalUploadHide();
       });
   }
 });
+
+function onEscapeHandler(evt) {
+  const inputFocus =
+    evt.target.classList.contains('text__hashtags') ||
+    evt.target.classList.contains('text__description');
+  if (inputFocus) {
+    return false;
+  }
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    modalUploadHide();
+  }
+}
+
+export { onEscapeHandler };
