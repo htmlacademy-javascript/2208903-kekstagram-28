@@ -1,26 +1,4 @@
-// const getRandomInteger = (min, max) => {
-//   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-//   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-//   const result = Math.random() * (upper - lower + 1) + lower;
-
-//   return Math.floor(result);
-// };
-
-// const createRandomIdFromRangeGenerator = (min, max) => {
-//   const previousValues = [];
-
-//   return function () {
-//     let currentValue = getRandomInteger(min, max);
-//     if (previousValues.length >= max - min + 1) {
-//       return null;
-//     }
-//     while (previousValues.includes(currentValue)) {
-//       currentValue = getRandomInteger(min, max);
-//     }
-//     previousValues.push(currentValue);
-//     return currentValue;
-//   };
-// };
+import { ALERT_SHOW_TIME } from './constans.js';
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -34,7 +12,6 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-const ALERT_SHOW_TIME = 5000;
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
@@ -56,11 +33,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {
-  // createRandomIdFromRangeGenerator,
-  // getRandomInteger,
-  isEscapeKey,
-  checkLengthString,
-  debounce,
-  showAlert,
-};
+export { isEscapeKey, checkLengthString, debounce, showAlert };
