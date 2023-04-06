@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { onEscapeHandler } from './form.js';
+import { escapeHandler } from './form.js';
 const successTemplate = document
   .querySelector('#success')
   .content.querySelector('.success');
@@ -24,7 +24,7 @@ const errorEscapeHandler = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     errorPopupCloseHandler();
-    document.addEventListener('keydown', onEscapeHandler);
+    document.addEventListener('keydown', escapeHandler);
     document.removeEventListener('keydown', errorEscapeHandler);
   }
 };

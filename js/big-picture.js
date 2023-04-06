@@ -21,7 +21,7 @@ let commentsShown = 0;
 const hideModal = () => {
   userModalElement.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscapeHandler);
+  document.removeEventListener('keydown', escapeHandler);
 };
 
 const showModal = () => {
@@ -91,10 +91,10 @@ const openModal = (photo) => {
   commentsTotal = photo.comments.length;
   commentsShown = 0;
   renderCommentsList();
-  document.addEventListener('keydown', onEscapeHandler);
+  document.addEventListener('keydown', escapeHandler);
 };
 
-function onEscapeHandler(evt) {
+function escapeHandler(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     hideModal();

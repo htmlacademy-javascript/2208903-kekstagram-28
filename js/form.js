@@ -21,7 +21,7 @@ const modalUploadHide = () => {
   modalUpload.classList.add('hidden');
   body.classList.remove('modal-open');
   orderForm.reset();
-  document.removeEventListener('keydown', onEscapeHandler);
+  document.removeEventListener('keydown', escapeHandler);
 };
 
 closeButton.addEventListener('click', () => {
@@ -32,7 +32,7 @@ const modalOpen = () => {
   modalUploadShow();
   scale();
   effects();
-  document.addEventListener('keydown', onEscapeHandler);
+  document.addEventListener('keydown', escapeHandler);
 };
 
 imageUpload.addEventListener('change', () => {
@@ -60,12 +60,12 @@ orderForm.addEventListener('submit', (evt) => {
           successHandler();
         } else {
           failHandler();
-          document.removeEventListener('keydown', onEscapeHandler);
+          document.removeEventListener('keydown', escapeHandler);
         }
       })
       .catch(() => {
         failHandler();
-        document.removeEventListener('keydown', onEscapeHandler);
+        document.removeEventListener('keydown', escapeHandler);
       })
       .finally(() => {
         submitButton.textContent = SubmitButtonText.IDLE;
@@ -74,7 +74,7 @@ orderForm.addEventListener('submit', (evt) => {
   }
 });
 
-function onEscapeHandler(evt) {
+function escapeHandler(evt) {
   const inputFocus =
     evt.target.classList.contains('text__hashtags') ||
     evt.target.classList.contains('text__description');
@@ -87,4 +87,4 @@ function onEscapeHandler(evt) {
   }
 }
 
-export { onEscapeHandler };
+export { escapeHandler };
